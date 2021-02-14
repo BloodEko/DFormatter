@@ -1,0 +1,6 @@
+
+.classpath
+.project
+target/
+*.prefs
+src/test/resources/temp.yml

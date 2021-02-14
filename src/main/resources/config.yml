@@ -1,0 +1,23 @@
+#-------------------------------------|
+# Settings are automatically updated, | 
+# each time an action is performed.   |
+#-------------------------------------|
+
+# Keeps these folders in sync. The content of
+# files with defined extensions will be parsed.
+sourceFolder: /dformatter/source
+targetFolder: /denizen/scripts/generated
+
+# For the reload command, when the action was
+# successful, this command will be executed.
+command: ex reload
+
+# For the reload command, the action will be
+# performed on another thread, to prevent lagg.
+async: true
+
+# All files will be mirrored. Files with
+# these extensios are also parsed.
+extensions:
+- .yml
+- .dsc

@@ -1,0 +1,12 @@
+name: ${project.artifactId}
+version: ${project.version}
+
+main: de.bloodeko.dformatter.DFormatter
+api-version: 1.13
+
+commands:
+  formatter:
+    description: Copies and formats script files.
+    permission: dformatter.admin
+    usage: /<command> reload (simple) (silent)
+    aliases: [fm]
