@@ -13,7 +13,7 @@ import org.bukkit.command.TabCompleter;
 import de.bloodeko.dformatter.core.Util;
 
 /**
- * Dispatches registered sub-commands for /fm.
+ * Dispatches registered FmCommands.
  * Also handles their tab completions.
  */
 public class CmdHandler implements CommandExecutor, TabCompleter {
@@ -24,7 +24,7 @@ public class CmdHandler implements CommandExecutor, TabCompleter {
     }
     
     /**
-     * Dispatches the first argument to an FmCommand 
+     * Dispatches the first argument to a FmCommand
      * and executes it, with the first argument cut off.
      */
     @Override
@@ -41,8 +41,8 @@ public class CmdHandler implements CommandExecutor, TabCompleter {
     }
     
     /**
-     * Dispatches tab-completion to an FmCommand and
-     * returns the resulting filtered List.
+     * Dispatches tab-completion to a FmCommand
+     * and returns the resulting filtered List.
      */
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
