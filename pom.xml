@@ -64,7 +64,18 @@
       </plugin>
     </plugins>
   </build>
-
+  
+  <repositories>
+    <repository>
+      <id>spigot-repo</id>
+      <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+    </repository>
+    <repository>
+      <id>bungeecord-repo</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </repository>
+  </repositories>
+  
   <dependencies>
     <dependency>
       <groupId>org.spigotmc</groupId>
@@ -72,22 +83,12 @@
       <version>1.15.2-R0.1-SNAPSHOT</version>
       <scope>provided</scope>
     </dependency>
-     <dependency>
-         <groupId>junit</groupId>
-         <artifactId>junit</artifactId>
-         <version>4.10</version>
-         <scope>test</scope>
-     </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.10</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
   
-  <repositories>
-    <repository>
-        <id>spigot-repo</id>
-        <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
-    </repository>
-    <repository>
-       <id>bungeecord-repo</id>
-       <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-    </repository>
-  </repositories>
 </project>
