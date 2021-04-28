@@ -49,7 +49,7 @@ public class Util {
             for (Iterator<String> it = lines.iterator(); it.hasNext();) {
                 bw.write(it.next());
                 if (it.hasNext()) {
-                    bw.write('\n');
+                    bw.write(System.lineSeparator());
                 }
             }
             bw.close();
