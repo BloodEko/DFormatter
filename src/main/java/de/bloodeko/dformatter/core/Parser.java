@@ -25,6 +25,7 @@ public class Parser {
     
     private final List<String> rawLines;
     private final List<String> modified;
+    private final InjectParser injectParser;
     
     private int index;
     private String line;
@@ -32,6 +33,7 @@ public class Parser {
     public Parser(List<String> lines) {
         rawLines = lines;
         modified = new ArrayList<>();
+        injectParser = new InjectParser();
     }
     
     /**
@@ -60,6 +62,7 @@ public class Parser {
     private void convertLine() {
         if (addComment()) return;
         convertTags();
+        convertInject();
         
         if (addSingleBracket()) return;
         if (addHasBracket()) return;
@@ -89,6 +92,10 @@ public class Parser {
                    .replace("<int[", "<element[")
                    .replace("<key[", "<queue.script.yaml_key[")
                    .replace("<c.", "<context.");
+    }
+    
+    private void convertInject() {
+        line = injectParser.parseLine(line);
     }
     
     private boolean addSingleBracket() {

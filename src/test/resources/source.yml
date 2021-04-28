@@ -62,6 +62,19 @@ MyTask3:
   - define x <int[5]>
   - define x <key[x]>
 
+MyInject:
+  type: task
+  script:
+  - inject locally message
+  - inject locally path:message
+  - inject MyInject message
+  - inject MyInject
+  - inject MyInject player:<p@notch>
+  - inject MyInject "def:hey du da"
+  - inject MyInject message "def:hey du da"
+  message:
+  - narrate hi
+
 MyTask4:
   type: task
   script:
