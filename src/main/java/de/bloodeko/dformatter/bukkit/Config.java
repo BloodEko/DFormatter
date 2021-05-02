@@ -45,6 +45,6 @@ public class Config {
         target = new File(plugins + config.getString("targetFolder", "/denizen/scripts/generated"));
         async = config.getBoolean("async", true);
         command = config.getString("command", "ex reload");
-        filter = new Extensions(config.getStringList("extensions"));
+        filter = new Extensions(config.getStringList("extensions"), config.getString("extension"));
     }
 }

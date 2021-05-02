@@ -14,7 +14,7 @@ public class CopyDemo {
         File source = new File(desktop + "/mc/server-1-15-2-work/plugins/dformatter/source");
         File target = new File(desktop + "/mc/server-1-15-2-work/plugins/Denizen/scripts/generated");
         
-        Extensions filter = new Extensions(Arrays.asList(".yml", ".dsc"));
+        Extensions filter = new Extensions(Arrays.asList(".yml", ".dsc"), ".yml");
         SyncResult result = Util.syncFolders(source, target, filter);
         CopyDemoPrinter.print(result);
     }

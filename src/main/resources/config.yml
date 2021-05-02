@@ -17,7 +17,11 @@ command: ex reload
 async: true
 
 # All files will be mirrored. Files with
-# these extensios are also parsed.
+# these extensions are also parsed.
 extensions:
 - .yml
 - .dsc
+
+# Parsed files will be saved with this extension.
+extension: .dsc
+

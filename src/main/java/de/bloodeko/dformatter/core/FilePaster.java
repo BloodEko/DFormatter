@@ -13,9 +13,9 @@ import java.nio.file.StandardCopyOption;
  * Parses the content of the file, its extension matches the filter.
  */
 public class FilePaster {
-    private Extensions filter;
-    private File source;
-    private File target;
+    private final File source;
+    private final File target;
+    private final Extensions filter;
     private String sourcePath;
     private String targetPath;
     private int mkdirCount;
@@ -39,7 +39,7 @@ public class FilePaster {
     }
     
     private void pasteFolder(File folder) {
-        mkdir(Util.getRelativeFile(folder, sourcePath, targetPath));
+        mkdir(getTargetFile(folder));
         for (File file : folder.listFiles()) {
             if (file.isFile()) {
                 pasteFile(file);
@@ -58,7 +58,7 @@ public class FilePaster {
     }
     
     private void pasteFile(File file) {
-        File to = Util.getRelativeFile(file, sourcePath, targetPath);
+        File to = getTargetFile(file);
         if (!to.exists() || isModified(file, to)) {
             try {
                 if (!to.exists()) {
@@ -76,6 +76,10 @@ public class FilePaster {
                 System.out.println("Could not pasteFile: " + ex.getMessage());
             }
         }
+    }
+    
+    private File getTargetFile(File sourceFile) {
+        return Util.getTargetFile(sourceFile, filter, sourcePath, targetPath);
     }
     
     private boolean isModified(File from, File to) {

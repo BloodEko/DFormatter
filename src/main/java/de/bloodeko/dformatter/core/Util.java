@@ -32,10 +32,40 @@ public class Util {
     }
     
     /**
+     * Returns true for any of these scenarios: <br>
+     * - input is a directory and relative exists. <br>
+     * - input is extension and a relative with any of the extensions exist. <br>
+     * - input has not any of the extensions and a relative exists.
+     */
+    public static boolean existsInSource(File input, Extensions filter, String target, String source) {
+        File relative = getRelative(input, target, source);
+        if (input.isDirectory()) {
+            return relative.exists();
+        }
+        if (filter.isOutputExtension(input) && filter.existsWithAny(relative)) {
+            return true;
+        }
+        return !filter.accepts(input) && relative.exists();
+    }
+    
+    /**
+     * If the input is no directory and the filter matches it,
+     * returns the relative with the output extension applied.
+     * Otherwise returns the relative.
+     */
+    public static File getTargetFile(File input, Extensions filter, String source, String target) {
+        File relative = getRelative(input, source, target);
+        if (!input.isDirectory() && filter.accepts(input)) {
+            return filter.withExtension(relative);
+        }
+        return relative;
+    }
+    
+    /**
      * The input file is a child of the baseFrom, calculates its relative path. <br>
      * Appends the relative path to the baseTo and returns this file.
      */
-    public static File getRelativeFile(File file, String baseFrom, String baseTo) {
+    private static File getRelative(File file, String baseFrom, String baseTo) {
         String relative = file.getAbsolutePath().substring(baseFrom.length());
         return new File(baseTo + relative);
     }
@@ -115,7 +145,7 @@ public class Util {
             source.mkdirs();
             target.mkdirs();
             
-            FileDeleter deleter = new FileDeleter(source, target);
+            FileDeleter deleter = new FileDeleter(source, target, filter);
             deleter.cleanTarget();
             
             FilePaster paster = new FilePaster(source, target, filter);

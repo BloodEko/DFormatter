@@ -9,16 +9,18 @@ import java.io.File;
  * which don't exist in the source-folder.
  */
 public class FileDeleter {
-    private File source;
-    private File target;
+    private final File source;
+    private final File target;
+    private final Extensions filter;
     private String sourcePath;
     private String targetPath;
     int filesCount;
     int folderCount;
     
-    public FileDeleter(File source, File target) {
+    public FileDeleter(File source, File target, Extensions filter) {
         this.source = source;
         this.target = target;
+        this.filter = filter;
     }
     
     /**
@@ -52,8 +54,8 @@ public class FileDeleter {
         }
     }
     
-    private boolean existsInSource(File file) {
-        return Util.getRelativeFile(file, targetPath, sourcePath).exists();
+    private boolean existsInSource(File targetFile) {
+        return Util.existsInSource(targetFile, filter, targetPath, sourcePath);
     }
 
     private void delete(File path) {
