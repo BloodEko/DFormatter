@@ -5,8 +5,8 @@
 
 # Keeps these folders in sync. The content of
 # files with defined extensions will be parsed.
-sourceFolder: /dformatter/source
-targetFolder: /denizen/scripts/generated
+source: /DFormatter/source
+target: /Denizen/scripts/generated
 
 # For the reload command, when the action was
 # successful, this command will be executed.

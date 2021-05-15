@@ -12,7 +12,7 @@ import de.bloodeko.dformatter.core.Extensions;
  * Holds settings which are used in the bukkit layer.
  */
 public class Config {
-    private DFormatter plugin;
+    private final DFormatter plugin;
     
     public File source;
     public File target;
@@ -41,8 +41,8 @@ public class Config {
      * Uses default values for non existing entries.
      */
     private void loadValues(FileConfiguration config, File plugins) {
-        source = new File(plugins + config.getString("sourceFolder", "/denizen/source"));
-        target = new File(plugins + config.getString("targetFolder", "/denizen/scripts/generated"));
+        source = new File(plugins + config.getString("source", "/DFormatter/source"));
+        target = new File(plugins + config.getString("target", "/Denizen/scripts/generated"));
         async = config.getBoolean("async", true);
         command = config.getString("command", "ex reload");
         filter = new Extensions(config.getStringList("extensions"), config.getString("extension"));
