@@ -45,7 +45,7 @@ public class Util {
         if (filter.isOutputExtension(input) && filter.existsWithAny(relative)) {
             return true;
         }
-        return !filter.accepts(input) && relative.exists();
+        return !filter.pasteFile(input) && relative.exists();
     }
     
     /**
@@ -55,7 +55,7 @@ public class Util {
      */
     public static File getTargetFile(File input, Extensions filter, String source, String target) {
         File relative = getRelative(input, source, target);
-        if (!input.isDirectory() && filter.accepts(input)) {
+        if (!input.isDirectory() && filter.pasteFile(input)) {
             return filter.withExtension(relative);
         }
         return relative;

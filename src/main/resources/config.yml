@@ -8,20 +8,19 @@
 source: /DFormatter/source
 target: /Denizen/scripts/generated
 
-# For the reload command, when the action was
-# successful, this command will be executed.
-command: ex reload
+# After /fm reload, when successful, triggers this.
+# Use /ex reload or another custom callback command.
+command: reloadScripts
 
-# For the reload command, the action will be
-# performed on another thread, to prevent lagg.
+# For /fm reload, whether to execute the action 
+# on another thread, to prevent lagg.
 async: true
 
-# All files will be mirrored. Files with
-# these extensions are also parsed.
+# Mirrors and parses files with these extensions.
+# Files starting with a dot symbol are ignored.
 extensions:
 - .yml
 - .dsc
 
 # Parsed files will be saved with this extension.
 extension: .dsc
-

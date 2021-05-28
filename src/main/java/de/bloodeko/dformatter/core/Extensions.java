@@ -8,27 +8,29 @@ import java.util.List;
  * and a single output extension.
  */
 public class Extensions {
-    private String[] extensions;
-    private String extension;
+    private final List<String> extensions;
+    private final String extension;
     
     public Extensions(List<String> extensions, String extension) {
-        this.extensions = extensions.toArray(new String[0]);
+        this.extensions = extensions;
         this.extension = extension;
     }
     
     /**
-     * Returns true if the files extension matches
-     * the single extension.
+     * Returns true if the file has the output extension.
      */
     public boolean isOutputExtension(File file) {
         return file.getName().endsWith(extension);
     }
     
     /**
-     * Returns true if a file exists with any of
-     * the extensions.
+     * Returns false, if the file name starts with a dot.
+     * Returns true if a file exists with any of the extensions.
      */
     public boolean existsWithAny(File file) {
+        if (file.getName().startsWith(".")) {
+            return false;
+        }
         for (String extension : extensions) {
             if (withExtension(file, extension).exists()) {
                 return true;
@@ -38,11 +40,14 @@ public class Extensions {
     }
     
     /**
-     * Returns true if the files extension
-     * matches any of the extensions.
+     * Returns false if the file name is starting with a dot.
+     * Returns true, if any of the extensions matches the files extension.
      */
-    public boolean accepts(File file) {
+    public boolean pasteFile(File file) {
         String name = file.getName();
+        if (name.startsWith(".")) {
+            return false;
+        }
         for (String extension : extensions) {
             if (name.endsWith(extension)) {
                 return true;
@@ -52,8 +57,15 @@ public class Extensions {
     }
 
     /**
-     * Returns a new file with the single
-     * extension applied.
+     * Returns true, if the folder name is not 
+     * starting with a dot.
+     */
+    public boolean pasteFolder(File folder) {
+        return !folder.getName().startsWith(".");
+    }
+
+    /**
+     * Returns a new File with the output extension applied.
      */
     public File withExtension(File file) {
         return withExtension(file, extension);

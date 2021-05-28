@@ -4,8 +4,6 @@ import static de.bloodeko.dformatter.core.Util.checkFolder;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.StandardCopyOption;
 
 /**
  * Reads files in a customized format and pastes them to the destination.
@@ -39,6 +37,9 @@ public class FilePaster {
     }
     
     private void pasteFolder(File folder) {
+        if (!filter.pasteFolder(folder)) {
+            return;
+        }
         mkdir(getTargetFile(folder));
         for (File file : folder.listFiles()) {
             if (file.isFile()) {
@@ -58,17 +59,16 @@ public class FilePaster {
     }
     
     private void pasteFile(File file) {
+        if (!filter.pasteFile(file)) {
+            return;
+        }
         File to = getTargetFile(file);
         if (!to.exists() || isModified(file, to)) {
             try {
                 if (!to.exists()) {
                     to.createNewFile();
                 }
-                if (filter.accepts(file)) {
-                    Util.convertFile(file, to);
-                } else {
-                    Files.copy(file.toPath(), to.toPath(), StandardCopyOption.REPLACE_EXISTING);
-                }
+                Util.convertFile(file, to);
                 to.setLastModified(file.lastModified());
                 pasteCount++;
             }
