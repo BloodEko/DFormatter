@@ -22,6 +22,7 @@ This gives a nice transition of the process and also shows, when errors are foun
 ```yml
 MyReloadCommand:
   type: command
+  permission: reload.admin
   name: reloadScripts
   script:
   - if <context.server> {
