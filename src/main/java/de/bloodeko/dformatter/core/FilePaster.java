@@ -72,8 +72,9 @@ public class FilePaster {
                 to.setLastModified(file.lastModified());
                 pasteCount++;
             }
-            catch(IOException ex) {
-                System.out.println("Could not pasteFile: " + ex.getMessage());
+            catch (IOException ex) {
+                System.out.println("Could not pasteFile: " + file.getName());
+                System.out.println(ex.getClass().getName() + ": " + ex.getMessage());
             }
         }
     }
